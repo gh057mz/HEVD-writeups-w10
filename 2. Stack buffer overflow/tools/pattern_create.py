@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Original at (in python2) https://github.com/ickerwx/pattern/tree/master
 
 import sys
 import struct
