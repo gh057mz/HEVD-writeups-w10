@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# Original at (in python2) https://github.com/ickerwx/pattern/tree/master
-
 import sys
 import struct
 
@@ -12,10 +10,7 @@ def pattern_create(length=8192):
     pattern = ''
     parts = ['A', 'a', '0']
     try:
-        if isinstance(length, str) and length.startswith('0x'):
-            length = int(length, 16)
-        else:
-            length = int(length, 10)
+        length = int(length)  # Ensure length is always an integer
     except ValueError:
         print_help()
         sys.exit(254)
@@ -40,7 +35,7 @@ def pattern_offset(value, length=8192):
     except ValueError:
         print_help()
         sys.exit(254)
-    pattern = pattern_create(length)
+    pattern = pattern_create(length)  # Now pattern_create receives a valid integer
     try:
         return pattern.index(value)
     except ValueError:
@@ -55,7 +50,7 @@ def main():
     num_value = sys.argv[2]
 
     if command == 'create':
-        print(pattern_create(num_value))
+        print(pattern_create(int(num_value)))
     elif len(sys.argv) == 4:
         print(pattern_offset(num_value, int(sys.argv[3])))
 
